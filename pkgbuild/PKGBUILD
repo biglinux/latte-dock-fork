@@ -25,10 +25,15 @@ sha256sums=('SKIP')
 # }
 
 build() {
+   echo ## BUILD ##
+   ls -lha
    rm -r ${_gitname}
+   ls -lha
    git clone ${url}.git
+   ls -lha
    cd ${_gitname}
-
+   ls -lha
+   
    sed -i '/project/s/lattedock/latte-dock/' CMakeLists.txt
    sed -i 's/sudo make install//' install.sh
    
