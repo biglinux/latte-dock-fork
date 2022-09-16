@@ -25,31 +25,30 @@ sha256sums=('SKIP')
 # }
 
 build() {
-   echo ## BUILD ##
-   ls -lha
-   rm -r ${_gitname}
-   ls -lha
-   git clone ${url}.git
-   ls -lha
    cd ${_gitname}
-   ls -lha
    
-   sed -i '/project/s/lattedock/latte-dock/' CMakeLists.txt
-   sed -i 's/sudo make install//' install.sh
+#    sed -i '/project/s/lattedock/latte-dock/' CMakeLists.txt
+#    sed -i 's/sudo make install//' install.sh
    
-   bash install.sh --translations
+   #bash install.sh --translations
    
-#    mkdir build && cd build
-#    cmake -DCMAKE_INSTALL_PREFIX=/usr \
-#          -DKDE_L10N_BRANCH=trunk \
-#          -DKDE_L10N_AUTO_TRANSLATIONS=ON \
-#          -DENABLE_MAKE_UNIQUE=OFF \
-#          -DCMAKE_BUILD_TYPE=Master ..
-#    make fetch-translations
+   mkdir build && cd build
+   cmake -DCMAKE_INSTALL_PREFIX=/usr \
+          -DCMAKE_BUILD_TYPE=Master ..
 }
 
 package() {
+   dir=$(echo ${srcdir} | sed 's/\//\\\//g')
+   
+   sed -i '/CMAKE_OBJDUMP /{p;s/.*/endif() \
+ \
+if(CMAKE_INSTALL_COMPONENT STREQUAL "lattedock" OR NOT CMAKE_INSTALL_COMPONENT) \
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}\/share" TYPE DIRECTORY FILES "/;}' ${_gitname}/build/cmake_install.cmake
+   
+   sed -i "/DIRECTORY FILES /s/$/$dir\/${_gitname}\/build\/locale\")/" ${_gitname}/build/cmake_install.cmake
   
+   cp -r ../../locale ${_gitname}/build/locale
+   
    make -C ${_gitname}/build DESTDIR=${pkgdir} install
 
 }
