@@ -7,14 +7,14 @@ pkgver=0.10.9
 pkgrel=8
 pkgdesc='Latte is a dock based on plasma frameworks that provides an elegant and intuitive experience for your tasks and plasmoids'
 arch=('x86_64')
-url='https://invent.kde.org/plasma/latte-dock'
+url='https://github.com/biglinux/latte-dock'
 license=('GPL')
 depends=('plasma-framework' 'kirigami2' 'knewstuff' 'hicolor-icon-theme' 'plasma-wayland-protocols')
 optdepends=('libunity: quicklists, counters, and progress bars for apps using libunity')
 makedepends=('git' 'cmake' 'extra-cmake-modules' 'python')
 conflicts=('latte-dock')
 provides=('latte-dock')
-source=("git+${url}.git#branch=master")
+source=("git+${url}.git")
 sha256sums=('SKIP')
 
 # pkgver() {
