@@ -47,7 +47,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "lattedock" OR NOT CMAKE_INSTALL_COMPONENT) 
    
    sed -i "/DIRECTORY FILES /s/$/$dir\/${_gitname}\/build\/locale\")/" ${_gitname}/build/cmake_install.cmake
   
-   cp -r ../../locale ${_gitname}/build/locale
+   cp -r ${_gitname}/locale ${_gitname}/build/locale
    
    make -C ${_gitname}/build DESTDIR=${pkgdir} install
 
