@@ -38,14 +38,14 @@ build() {
 }
 
 package() {
-   dir=$(echo ${srcdir} | sed 's/\//\\\//g')
+#    dir=$(echo ${srcdir} | sed 's/\//\\\//g')
    
-   sed -i '/CMAKE_OBJDUMP /{p;s/.*/endif() \
- \
-if(CMAKE_INSTALL_COMPONENT STREQUAL "lattedock" OR NOT CMAKE_INSTALL_COMPONENT) \
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}\/share" TYPE DIRECTORY FILES "/;}' ${_gitname}/build/cmake_install.cmake
+#    sed -i '/CMAKE_OBJDUMP /{p;s/.*/endif() \
+#  \
+# if(CMAKE_INSTALL_COMPONENT STREQUAL "lattedock" OR NOT CMAKE_INSTALL_COMPONENT) \
+#   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}\/share" TYPE DIRECTORY FILES "/;}' ${_gitname}/build/cmake_install.cmake
    
-   sed -i "/DIRECTORY FILES /s/$/$dir\/${_gitname}\/build\/locale\")/" ${_gitname}/build/cmake_install.cmake
+#    sed -i "/DIRECTORY FILES /s/$/$dir\/${_gitname}\/build\/locale\")/" ${_gitname}/build/cmake_install.cmake
   
 #    cp -r ${_gitname}/locale ${_gitname}/build/locale
    
