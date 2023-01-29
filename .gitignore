@@ -31,7 +31,7 @@ build*/
 *.*.orig
 
 # locale files
-*.mo
+#*.mo
 
 # KDevelop Project files
 *.kdev4
